@@ -61,8 +61,7 @@ PRODUCT_PACKAGES += \
 	libFLAC
 
 # Boot jars
-PRODUCT_BOOT_JARS += \
-	qcom.fmradio
+#PRODUCT_BOOT_JARS += \
 
 # SHIM RIL
 PRODUCT_PACKAGES += \
@@ -71,15 +70,6 @@ PRODUCT_PACKAGES += \
 # Doze
 PRODUCT_PACKAGES += \
 	SamsungDoze
-
-# FM
-PRODUCT_PACKAGES += \
-	libfmjni \
-	libqcomfm_jni \
-	qcom.fmradio
-
-ADDITIONAL_BUILD_PROPERTIES += \
-	hw.fm.mode=normal
 
 # Ramdisk
 PRODUCT_PACKAGES += \
