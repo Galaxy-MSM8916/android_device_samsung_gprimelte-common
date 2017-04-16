@@ -63,7 +63,23 @@ void init_target_properties(void)
 	property_get("ro.bootloader", bootloader);
 
 
-	if (strstr(bootloader,"G530FZ")) {
+	if (strstr(bootloader,"G530HXXU")) {
+		property_set("ro.build.product", "fortuna3g");
+		property_set("ro.build.description", "lineage_fortuna3g-userdebug 6.0.1 MOB31K 4dae919457 test-keys");
+		property_set("ro.build.fingerprint", "samsung/lineage_fortuna3g/fortuna3g:6.0.1/MOB31K/4dae919457:userdebug/test-keys");
+		property_set("ro.product.device", "fortuna3g");
+		property_set("ro.product.model", "SM-G530H");
+		property_set("ro.sf.lcd_density", "240");
+	}
+	else if (strstr(bootloader,"G530HXCU")) {
+		property_set("ro.build.product", "fortunave3g");
+		property_set("ro.build.description", "lineage_fortunave3g-userdebug 6.0.1 MOB31K 4dae919457 test-keys");
+		property_set("ro.build.fingerprint", "samsung/lineage_fortunave3g/fortunave3g:6.0.1/MOB31K/4dae919457:userdebug/test-keys");
+		property_set("ro.product.device", "fortunave3g");
+		property_set("ro.product.model", "SM-G530H");
+		property_set("ro.sf.lcd_density", "240");
+	}
+	else if (strstr(bootloader,"G530FZ")) {
 		property_set("ro.build.product", "gprimeltexx");
 		property_set("ro.build.description", "lineage_gprimeltexx-userdebug 6.0.1 MOB31K 4dae919457 test-keys");
 		property_set("ro.build.fingerprint", "samsung/lineage_gprimeltexx/gprimeltexx:6.0.1/MOB31K/4dae919457:userdebug/test-keys");
