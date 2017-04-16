@@ -19,6 +19,8 @@
 BOOTLOADER=`getprop ro.bootloader`
 
 case $BOOTLOADER in
+  G530HXXU*)   VARIANT="3g" ;;
+  G530HXCU*)   VARIANT="ve3g" ;;
   G530FZ*)     VARIANT="xx" ;;
   G530MUU*)    VARIANT="zt" ;;
   G530P*)      VARIANT="spr" ;;
