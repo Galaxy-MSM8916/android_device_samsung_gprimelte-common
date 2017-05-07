@@ -25,9 +25,6 @@ BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(LOCAL_PATH)/bluetooth
 TARGET_INIT_VENDOR_LIB := libinit_gprimelte
 TARGET_LIBINIT_DEFINES_FILE := $(LOCAL_PATH)/init/init_gprimelte.cpp
 
-# Release Tools
-TARGET_RELEASETOOLS_EXTENSIONS := $(LOCAL_PATH)/releasetools
-
 # Lights
 TARGET_PROVIDES_LIBLIGHT := false
 
