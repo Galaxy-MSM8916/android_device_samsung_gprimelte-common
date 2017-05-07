@@ -15,30 +15,18 @@
 # limitations under the License.
 #
 
-# Detect variant
-VARIANT=$(/tmp/install/bin/get_variant.sh)
+# Detect variant and copy its specific-blobs
+. /tmp/install/bin/variant_hook.sh
 
-# exit if the device is unknown
-if [ $VARIANT == "unknown" ]; then
-	exit 1
+# Mount /system
+mount_fs system
+
+if [ $VARIANT == "zt" ] || [ $VARIANT == "tfnvzw" ]; then
+	rm /system/lib/hw/nfc_nci.msm8916.so
+	rm /system/etc/libnfc-sec.conf
+	rm /system/etc/libnfc-sec-hal.conf
+else
+	mv /system/etc/libnfc-sec.conf /system/etc/libnfc-brcm.conf
+	rm /system/etc/libnfc-nxp.conf
+	rm /system/lib/hw/nfc_nci.pn54x.msm8916.so
 fi
-
-RADIO_DIR=/system/RADIO/$VARIANT
-BLOCK_DEV_DIR=/dev/block/bootdevice/by-name
-
-if [ -d ${RADIO_DIR} ]; then
-
-	cd ${RADIO_DIR} 
-
-	# flash the firmware
-	for FILE in `find . -type f` ; do
-		echo "Flashing ${FILE} to ${BLOCK_DEV_DIR}/${FILE} ..."
-		dd if=${FILE} of=${BLOCK_DEV_DIR}/${FILE}
-	done
-fi
-
-# remove the device blobs
-echo "Cleaning up ..."
-rm -rf /system/RADIO
-
-exit 0

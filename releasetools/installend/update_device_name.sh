@@ -16,16 +16,15 @@
 #
 
 # Detect variant and copy its specific-blobs
-VARIANT=$(/tmp/install/bin/get_variant.sh)
+. /tmp/install/bin/variant_hook.sh
 
-if [ $VARIANT == "zt" ] || [ $VARIANT == "tfnvzw" ]; then
-	rm /system/lib/hw/nfc_nci.msm8916.so
-	rm /system/etc/libnfc-sec.conf
-	rm /system/etc/libnfc-sec-hal.conf
-else
-	mv /system/etc/libnfc-sec.conf /system/etc/libnfc-brcm.conf
-	rm /system/etc/libnfc-nxp.conf
-	rm /system/lib/hw/nfc_nci.pn54x.msm8916.so
-fi
+DEVICE="gprimelte${VARIANT}"
 
-exit 0
+# Mount /system
+mount_fs system
+
+# update the device name in the prop
+ui_print "Device variant is $DEVICE"
+ui_print "Updating device variant name ..."
+sed -i s/gprimelte[a-z]*/${DEVICE}/g /system/build.prop
+sed -i s/fortunalte[a-z]*/${DEVICE}/g /system/build.prop

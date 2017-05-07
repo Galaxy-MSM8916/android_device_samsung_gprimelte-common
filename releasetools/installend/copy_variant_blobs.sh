@@ -16,18 +16,31 @@
 #
 
 # Detect variant and copy its specific-blobs
-VARIANT=$(/tmp/install/bin/get_variant.sh)
+. /tmp/install/bin/variant_hook.sh
 
-# exit if the device is unknown
-if [ $VARIANT == "unknown" ]; then
-	exit 1
+BLOBBASE=/system/blobs/$VARIANT
+
+# Mount /system
+mount_fs system
+
+if [ -d $BLOBBASE ]; then
+
+	cd $BLOBBASE
+
+	# copy all the blobs
+	for FILE in `find . -type f | cut -c 3-` ; do
+		mkdir -p `dirname /system/$FILE`
+		ui_print "Copying $FILE to /system/$FILE ..."
+		cp $FILE /system/$FILE
+	done
+
+	# set permissions on binary files
+	for FILE in bin/* ; do
+		ui_print "Setting /system/$FILE executable ..."
+		chmod 755 /system/$FILE
+	done
 fi
 
-DEVICE="gprimelte${VARIANT}"
-
-# update the device name in the prop
-echo "Updating device variant name ..."
-sed -i s/gprimelte[a-z]*/${DEVICE}/g /system/build.prop
-sed -i s/fortunalte[a-z]*/${DEVICE}/g /system/build.prop
-
-exit 0
+# remove the device blobs
+ui_print "Cleaning up ..."
+rm -rf /system/blobs

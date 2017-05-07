@@ -16,35 +16,23 @@
 #
 
 # Detect variant and copy its specific-blobs
-VARIANT=$(/tmp/install/bin/get_variant.sh)
+BOOTLOADER=`getprop ro.bootloader`
+
+case $BOOTLOADER in
+  G530HXXU*)   VARIANT="3g" ;;
+  G530HXCU*)   VARIANT="ve3g" ;;
+  G530FZ*)     VARIANT="xx" ;;
+  G530MUU*)    VARIANT="zt" ;;
+  G530P*)      VARIANT="spr" ;;
+  G530T1*)     VARIANT="mtr" ;;
+  G530T*)      VARIANT="tmo" ;;
+  G530W*)      VARIANT="can" ;;
+  S920L*)      VARIANT="tfnvzw" ;;
+  *)           VARIANT="unknown" ;;
+esac
 
 # exit if the device is unknown
 if [ $VARIANT == "unknown" ]; then
+	ui_print "Unknown device variant detected. Aborting..."
 	exit 1
 fi
-
-BLOBBASE=/system/blobs/$VARIANT
-
-if [ -d $BLOBBASE ]; then
-
-	cd $BLOBBASE
-
-	# copy all the blobs
-	for FILE in `find . -type f` ; do
-		mkdir -p `dirname /system/$FILE`
-		echo "Copying $FILE to /system/$FILE ..."
-		cp $FILE /system/$FILE
-	done
-
-	# set permissions on binary files
-	for FILE in bin/* ; do
-		echo "Setting /system/$FILE executable ..."
-		chmod 755 /system/$FILE
-	done
-fi
-
-# remove the device blobs
-echo "Cleaning up ..."
-rm -rf /system/blobs
-
-exit 0
