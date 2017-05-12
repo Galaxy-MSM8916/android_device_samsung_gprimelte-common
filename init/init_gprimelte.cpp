@@ -95,6 +95,13 @@ void init_target_properties(void)
 		property_set("ro.product.model", "SM-G530MU");
 		property_set("ro.sf.lcd_density", "240");
 	}
+	else if (strstr(bootloader,"G530MU")) {
+		property_set("ro.build.product", "fortunalteub");
+		property_set("ro.build.description", "lineage_fortunalteub-userdebug 6.0.1 MOB31K 4dae919457 test-keys");
+		property_set("ro.build.fingerprint", "samsung/lineage_fortunalteub/fortunalteub:6.0.1/MOB31K/4dae919457:userdebug/test-keys");
+		property_set("ro.product.device", "fortunalteub");
+		property_set("ro.product.model", "SM-G530M");
+	}
 	else if (strstr(bootloader,"G530P")) {
 		property_set("ro.build.product", "gprimeltespr");
 		property_set("ro.product.device", "gprimeltespr");
