@@ -99,13 +99,6 @@ PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/audio/audio_policy.conf:system/etc/audio_policy.conf \
 	$(LOCAL_PATH)/audio/mixer_paths.xml:system/etc/mixer_paths.xml
 
-# Configuration files
-PRODUCT_COPY_FILES += \
-	$(LOCAL_PATH)/configs/Diag.cfg:system/etc/Diag.cfg \
-	$(LOCAL_PATH)/configs/Diag_audio.cfg:system/etc/Diag_audio.cfg \
-	$(LOCAL_PATH)/configs/Diag_volte.cfg:system/etc/Diag_volte.cfg \
-	$(LOCAL_PATH)/configs/Diag_zero.cfg:system/etc/Diag_zero.cfg
-
 # Permissions
 PRODUCT_COPY_FILES += \
 	frameworks/native/data/etc/android.hardware.audio.low_latency.xml:system/etc/permissions/android.hardware.audio.low_latency.xml \
