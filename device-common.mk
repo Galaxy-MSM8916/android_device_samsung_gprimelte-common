@@ -29,6 +29,42 @@ LOCAL_PATH := device/samsung/gprimelte-common
 # Common overlay
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 
+# Audio configurations
+PRODUCT_COPY_FILES += \
+	$(LOCAL_PATH)/configs/audio/mixer_paths.xml:system/etc/mixer_paths.xml
+
+# NFC prebuilt files
+PRODUCT_COPY_FILES += \
+	$(LOCAL_PATH)/configs/nfc/nfcee_access.xml:system/etc/nfcee_access.xml \
+	packages/apps/Nfc/migrate_nfc.txt:system/etc/updatecmds/migrate_nfc.txt \
+	$(LOCAL_PATH)/configs/nfc/route.xml:system/etc/param/route.xml \
+	$(LOCAL_PATH)/configs/nfc/libnfc-brcm.conf:system/etc/libnfc-brcm.conf \
+	$(LOCAL_PATH)/configs/nfc/libnfc-nxp.conf:system/etc/libnfc-nxp.conf \
+	$(LOCAL_PATH)/configs/nfc/libnfc-sec-hal.conf:system/etc/libnfc-sec-hal.conf \
+	$(LOCAL_PATH)/configs/nfc/libnfc-sec.conf:system/etc/libnfc-sec.conf
+
+# OTA scripts
+PRODUCT_COPY_FILES += \
+	$(LOCAL_PATH)/releasetools/variant_hook.sh:install/bin/variant_hook.sh \
+	$(LOCAL_PATH)/releasetools/installend/copy_nfc_configs.sh:install/bin/installend/copy_nfc_configs.sh \
+	$(LOCAL_PATH)/releasetools/installend/copy_variant_blobs.sh:install/bin/installend/copy_variant_blobs.sh \
+	$(LOCAL_PATH)/releasetools/installend/update_baseband.sh:install/bin/installend/update_baseband.sh \
+	$(LOCAL_PATH)/releasetools/installend/update_device_name.sh:install/bin/installend/update_device_name.sh
+
+# Permissions
+PRODUCT_COPY_FILES += \
+	frameworks/native/data/etc/android.hardware.audio.low_latency.xml:system/etc/permissions/android.hardware.audio.low_latency.xml \
+	frameworks/native/data/etc/android.hardware.camera.flash-autofocus.xml:system/etc/permissions/android.hardware.camera.flash-autofocus.xml \
+	frameworks/native/data/etc/android.hardware.nfc.hce.xml:system/etc/permissions/android.hardware.nfc.hce.xml \
+	frameworks/native/data/etc/android.hardware.nfc.xml:system/etc/permissions/android.hardware.nfc.xml \
+	frameworks/native/data/etc/com.android.nfc_extras.xml:system/etc/permissions/com.android.nfc_extras.xml \
+	frameworks/native/data/etc/android.hardware.sensor.compass.xml:system/etc/permissions/android.hardware.sensor.compass.xml \
+	frameworks/native/data/etc/android.hardware.sensor.gyroscope.xml:system/etc/permissions/android.hardware.sensor.gyroscope.xml \
+	frameworks/native/data/etc/android.hardware.sensor.light.xml:system/etc/permissions/android.hardware.sensor.light.xml \
+	frameworks/native/data/etc/android.hardware.sensor.proximity.xml:system/etc/permissions/android.hardware.sensor.proximity.xml \
+	frameworks/native/data/etc/android.hardware.telephony.cdma.xml:system/etc/permissions/android.hardware.telephony.cdma.xml \
+	frameworks/native/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml
+
 # Remove packages
 PRODUCT_PACKAGES += \
 	RemovePackages
@@ -46,22 +82,9 @@ PRODUCT_PACKAGES += \
 	libnfc_nci_jni \
 	libpn547_fw
 
-# NFC prebuilt files
-PRODUCT_COPY_FILES += \
-	$(LOCAL_PATH)/configs/nfc/nfcee_access.xml:system/etc/nfcee_access.xml \
-	packages/apps/Nfc/migrate_nfc.txt:system/etc/updatecmds/migrate_nfc.txt \
-	$(LOCAL_PATH)/configs/nfc/route.xml:system/etc/param/route.xml \
-	$(LOCAL_PATH)/configs/nfc/libnfc-brcm.conf:system/etc/libnfc-brcm.conf \
-	$(LOCAL_PATH)/configs/nfc/libnfc-nxp.conf:system/etc/libnfc-nxp.conf \
-	$(LOCAL_PATH)/configs/nfc/libnfc-sec-hal.conf:system/etc/libnfc-sec-hal.conf \
-	$(LOCAL_PATH)/configs/nfc/libnfc-sec.conf:system/etc/libnfc-sec.conf
-
 # Audio
 PRODUCT_PACKAGES += \
 	libFLAC
-
-# Boot jars
-#PRODUCT_BOOT_JARS += \
 
 # SHIM RIL
 PRODUCT_PACKAGES += \
@@ -74,32 +97,6 @@ PRODUCT_PACKAGES += \
 # Ramdisk
 PRODUCT_PACKAGES += \
 	init.target.rc
-
-# OTA scripts
-PRODUCT_COPY_FILES += \
-	$(LOCAL_PATH)/releasetools/variant_hook.sh:install/bin/variant_hook.sh \
-	$(LOCAL_PATH)/releasetools/installend/copy_nfc_configs.sh:install/bin/installend/copy_nfc_configs.sh \
-	$(LOCAL_PATH)/releasetools/installend/copy_variant_blobs.sh:install/bin/installend/copy_variant_blobs.sh \
-	$(LOCAL_PATH)/releasetools/installend/update_baseband.sh:install/bin/installend/update_baseband.sh \
-	$(LOCAL_PATH)/releasetools/installend/update_device_name.sh:install/bin/installend/update_device_name.sh
-
-# Audio configurations
-PRODUCT_COPY_FILES += \
-	$(LOCAL_PATH)/configs/audio/mixer_paths.xml:system/etc/mixer_paths.xml
-
-# Permissions
-PRODUCT_COPY_FILES += \
-	frameworks/native/data/etc/android.hardware.audio.low_latency.xml:system/etc/permissions/android.hardware.audio.low_latency.xml \
-	frameworks/native/data/etc/android.hardware.camera.flash-autofocus.xml:system/etc/permissions/android.hardware.camera.flash-autofocus.xml \
-	frameworks/native/data/etc/android.hardware.nfc.hce.xml:system/etc/permissions/android.hardware.nfc.hce.xml \
-	frameworks/native/data/etc/android.hardware.nfc.xml:system/etc/permissions/android.hardware.nfc.xml \
-	frameworks/native/data/etc/com.android.nfc_extras.xml:system/etc/permissions/com.android.nfc_extras.xml \
-	frameworks/native/data/etc/android.hardware.sensor.compass.xml:system/etc/permissions/android.hardware.sensor.compass.xml \
-	frameworks/native/data/etc/android.hardware.sensor.gyroscope.xml:system/etc/permissions/android.hardware.sensor.gyroscope.xml \
-	frameworks/native/data/etc/android.hardware.sensor.light.xml:system/etc/permissions/android.hardware.sensor.light.xml \
-	frameworks/native/data/etc/android.hardware.sensor.proximity.xml:system/etc/permissions/android.hardware.sensor.proximity.xml \
-	frameworks/native/data/etc/android.hardware.telephony.cdma.xml:system/etc/permissions/android.hardware.telephony.cdma.xml \
-	frameworks/native/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml
 
 # append the updater uri to the product properties if set
 ifneq ($(CM_UPDATER_OTA_URI),)
