@@ -31,9 +31,7 @@
 
 void init_target_properties(void)
 {
-	char bootloader[PROP_VALUE_MAX];
-	/* get the bootloader string */
-	property_get("ro.bootloader", bootloader);
+	std::string bootloader = property_get("ro.bootloader");
 
 	char *device = NULL;
 	char *model = NULL;
@@ -41,54 +39,54 @@ void init_target_properties(void)
 	char *operator_numeric = NULL;
 	int network_type = 1;
 
-	if (strstr(bootloader,"G530HXX")) {
+	if (bootloader.find("G530HXX") == 0) {
 		device = (char *)"fortuna3g";
 		model = (char *)"SM-G530H";
 		network_type=GSM_DEVICE;
 	}
-	else if (strstr(bootloader,"G530HXC")) {
+	else if (bootloader.find("G530HXC") == 0) {
 		device = (char *)"fortunave3g";
 		model = (char *)"SM-G530H";
 		network_type=GSM_DEVICE;
 	}
-	else if (strstr(bootloader,"G530FZ")) {
+	else if (bootloader.find("G530FZ") == 0) {
 		device = (char *)"gprimeltexx";
 		model = (char *)"SM-G530FZ";
 		network_type=LTE_DEVICE;
 	}
-	else if (strstr(bootloader,"G530MUU")) {
+	else if (bootloader.find("G530MUU") == 0) {
 		device = (char *)"gprimeltezt";
 		model = (char *)"SM-G530MU";
 		network_type=LTE_DEVICE;
 	}
-	else if (strstr(bootloader,"G530MU")) {
+	else if (bootloader.find("G530MU") == 0) {
 		device = (char *)"fortunalteub";
 		model = (char *)"SM-G530M";
 		network_type=LTE_DEVICE;
 	}
-	else if (strstr(bootloader,"G530P")) {
+	else if (bootloader.find("G530P") == 0) {
 		device = (char *)"gprimeltespr";
 		model = (char *)"SM-G530P";
 		network_type=CDMA_DEVICE;
 		operator_alpha= (char *)"Chameleon";
 		operator_numeric= (char *)"310000";
 	}
-	else if (strstr(bootloader,"G530T1")) {
+	else if (bootloader.find("G530T1") == 0) {
 		device = (char *)"gprimeltemtr";
 		model = (char *)"SM-G530T1";
 		network_type=LTE_DEVICE;
 	}
-	else if (strstr(bootloader,"G530T")) {
+	else if (bootloader.find("G530T") == 0) {
 		device = (char *)"gprimeltetmo";
 		model = (char *)"SM-G530T";
 		network_type=LTE_DEVICE;
 	}
-	else if (strstr(bootloader,"G530W")) {
+	else if (bootloader.find("G530W") == 0) {
 		device = (char *)"gprimeltecan";
 		model = (char *)"SM-G530W";
 		network_type=LTE_DEVICE;
 	}
-	else if (strstr(bootloader,"S920L")) {
+	else if (bootloader.find("S920L") == 0) {
 		device = (char *)"gprimeltetfnvzw";
 		model = (char *)"SM-S920L";
 		network_type=CDMA_DEVICE;
@@ -99,6 +97,6 @@ void init_target_properties(void)
 		return;
 	}
 	/* set the properties */
-	set_target_properties((char *)bootloader, device, model,
+	set_target_properties((char *)bootloader.c_str(), device, model,
 		       network_type, operator_alpha, operator_numeric);
 }
