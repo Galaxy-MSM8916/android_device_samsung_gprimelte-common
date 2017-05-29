@@ -65,40 +65,30 @@ void init_target_properties(void)
 
 	if (strstr(bootloader,"G530HXXU")) {
 		property_set("ro.build.product", "fortuna3g");
-		property_set("ro.build.description", "lineage_fortuna3g-userdebug 6.0.1 MOB31K 4dae919457 test-keys");
-		property_set("ro.build.fingerprint", "samsung/lineage_fortuna3g/fortuna3g:6.0.1/MOB31K/4dae919457:userdebug/test-keys");
 		property_set("ro.product.device", "fortuna3g");
 		property_set("ro.product.model", "SM-G530H");
 		property_set("ro.sf.lcd_density", "240");
 	}
 	else if (strstr(bootloader,"G530HXCU")) {
 		property_set("ro.build.product", "fortunave3g");
-		property_set("ro.build.description", "lineage_fortunave3g-userdebug 6.0.1 MOB31K 4dae919457 test-keys");
-		property_set("ro.build.fingerprint", "samsung/lineage_fortunave3g/fortunave3g:6.0.1/MOB31K/4dae919457:userdebug/test-keys");
 		property_set("ro.product.device", "fortunave3g");
 		property_set("ro.product.model", "SM-G530H");
 		property_set("ro.sf.lcd_density", "240");
 	}
 	else if (strstr(bootloader,"G530FZ")) {
 		property_set("ro.build.product", "gprimeltexx");
-		property_set("ro.build.description", "lineage_gprimeltexx-userdebug 6.0.1 MOB31K 4dae919457 test-keys");
-		property_set("ro.build.fingerprint", "samsung/lineage_gprimeltexx/gprimeltexx:6.0.1/MOB31K/4dae919457:userdebug/test-keys");
 		property_set("ro.product.device", "gprimeltexx");
 		property_set("ro.product.model", "SM-G530FZ");
 		property_set("ro.sf.lcd_density", "220");
 	}
 	else if (strstr(bootloader,"G530MUU")) {
 		property_set("ro.build.product", "gprimeltezt");
-		property_set("ro.build.description", "lineage_gprimeltezt-userdebug 6.0.1 MOB31K 4dae919457 test-keys");
-		property_set("ro.build.fingerprint", "samsung/lineage_gprimeltezt/gprimeltezt:6.0.1/MOB31K/4dae919457:userdebug/test-keys");
 		property_set("ro.product.device", "gprimeltezt");
 		property_set("ro.product.model", "SM-G530MU");
 		property_set("ro.sf.lcd_density", "240");
 	}
 	else if (strstr(bootloader,"G530MU")) {
 		property_set("ro.build.product", "fortunalteub");
-		property_set("ro.build.description", "lineage_fortunalteub-userdebug 6.0.1 MOB31K 4dae919457 test-keys");
-		property_set("ro.build.fingerprint", "samsung/lineage_fortunalteub/fortunalteub:6.0.1/MOB31K/4dae919457:userdebug/test-keys");
 		property_set("ro.product.device", "fortunalteub");
 		property_set("ro.product.model", "SM-G530M");
 	}
@@ -114,30 +104,22 @@ void init_target_properties(void)
 		property_set("ro.config.combined_signal", "true");
 		property_set("ro.ril.ecclist", "911,#911,*911");
 		/* end radio properties */
-		property_set("ro.build.description", "lineage_gprimeltespr-userdebug 6.0.1 MOB31K 4dae919457 test-keys");
-		property_set("ro.build.fingerprint", "samsung/lineage_gprimeltespr/gprimeltespr:6.0.1/MOB31K/4dae919457:userdebug/test-keys");
 
 	}
 	else if (strstr(bootloader,"G530T1")) {
 		property_set("ro.build.product", "gprimeltemtr");
 		property_set("ro.product.device", "gprimeltemtr");
 		property_set("ro.product.model", "SM-G530T1");
-		property_set("ro.build.description", "lineage_gprimeltemtr-userdebug 6.0.1 MOB31K 4dae919457 test-keys");
-		property_set("ro.build.fingerprint", "samsung/lineage_gprimeltemtr/gprimeltemtr:6.0.1/MOB31K/4dae919457:userdebug/test-keys");
 	}
 	else if (strstr(bootloader,"G530T")) {
 		property_set("ro.build.product", "gprimeltetmo");
 		property_set("ro.product.device", "gprimeltetmo");
 		property_set("ro.product.model", "SM-G530T");
-		property_set("ro.build.description", "lineage_gprimeltetmo-userdebug 6.0.1 MOB31K 4dae919457 test-keys");
-		property_set("ro.build.fingerprint", "samsung/lineage_gprimeltetmo/gprimeltetmo:6.0.1/MOB31K/4dae919457:userdebug/test-keys");
 	}
 	else if (strstr(bootloader,"G530W")) {
 		property_set("ro.build.product", "gprimeltecan");
 		property_set("ro.product.device", "gprimeltecan");
 		property_set("ro.product.model", "SM-G530W");
-		property_set("ro.build.description", "lineage_gprimeltecan-userdebug 6.0.1 MOB31K 4dae919457 test-keys");
-		property_set("ro.build.fingerprint", "samsung/lineage_gprimeltecan/gprimeltecan:6.0.1/MOB31K/4dae919457:userdebug/test-keys");
 	}
 	else if (strstr(bootloader,"S920L")) {
 		property_set("ro.build.product", "gprimeltetfnvzw");
@@ -149,8 +131,6 @@ void init_target_properties(void)
 		property_set("ro.config.combined_signal", "true");
 		/* end radio properties */
 		property_set("ro.sf.lcd_density", "260");
-		property_set("ro.build.description", "lineage_gprimeltetfnvzw-userdebug 6.0.1 MOB31K 4dae919457 test-keys");
-		property_set("ro.build.fingerprint", "samsung/lineage_gprimeltetfnvzw/gprimeltetfnvzw:6.0.1/MOB31K/4dae919457:userdebug/test-keys");
 
 	}
 	property_get("ro.product.device", device);
