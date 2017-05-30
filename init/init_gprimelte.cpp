@@ -63,13 +63,13 @@ void init_target_properties(void)
 	property_get("ro.bootloader", bootloader);
 
 
-	if (strstr(bootloader,"G530HXXU")) {
+	if (strstr(bootloader,"G530HXX")) {
 		property_set("ro.build.product", "fortuna3g");
 		property_set("ro.product.device", "fortuna3g");
 		property_set("ro.product.model", "SM-G530H");
 		property_set("ro.sf.lcd_density", "240");
 	}
-	else if (strstr(bootloader,"G530HXCU")) {
+	else if (strstr(bootloader,"G530HXC")) {
 		property_set("ro.build.product", "fortunave3g");
 		property_set("ro.product.device", "fortunave3g");
 		property_set("ro.product.model", "SM-G530H");
