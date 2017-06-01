@@ -27,118 +27,75 @@
    IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
-
-#include "vendor_init.h"
-#include "property_service.h"
-#include "log.h"
-#include "util.h"
-
-void cdma_properties(char const *operator_alpha,
-		char const *operator_numeric,
-		char const *default_network)
-{
-	/* Dynamic CDMA Properties */
-	property_set("ro.cdma.home.operator.alpha", operator_alpha);
-	property_set("ro.cdma.home.operator.numeric", operator_numeric);
-	property_set("ro.telephony.default_network", default_network);
-
-	/* Static CDMA Properties */
-	property_set("ril.subscription.types", "NV,RUIM");
-	property_set("ro.telephony.default_cdma_sub", "0");
-	property_set("ro.telephony.get_imsi_from_sim", "true");
-	property_set("ro.telephony.ril.config", "newDriverCallU,newDialCode");
-	property_set("telephony.lteOnCdmaDevice", "1");
-}
-
+#include <init_msm8916.h>
 
 void init_target_properties(void)
 {
 	char bootloader[PROP_VALUE_MAX];
-	char device[PROP_VALUE_MAX];
-
 	/* get the bootloader string */
 	property_get("ro.bootloader", bootloader);
 
+	char *device = NULL;
+	char *model = NULL;
+	char *operator_alpha = NULL;
+	char *operator_numeric = NULL;
+	int network_type = 1;
 
 	if (strstr(bootloader,"G530HXX")) {
-		property_set("ro.build.product", "fortuna3g");
-		property_set("ro.product.device", "fortuna3g");
-		property_set("ro.product.model", "SM-G530H");
-		property_set("ro.sf.lcd_density", "240");
+		device = (char *)"fortuna3g";
+		model = (char *)"SM-G530H";
+		network_type=GSM_DEVICE;
 	}
 	else if (strstr(bootloader,"G530HXC")) {
-		property_set("ro.build.product", "fortunave3g");
-		property_set("ro.product.device", "fortunave3g");
-		property_set("ro.product.model", "SM-G530H");
-		property_set("ro.sf.lcd_density", "240");
+		device = (char *)"fortunave3g";
+		model = (char *)"SM-G530H";
+		network_type=GSM_DEVICE;
 	}
 	else if (strstr(bootloader,"G530FZ")) {
-		property_set("ro.build.product", "gprimeltexx");
-		property_set("ro.product.device", "gprimeltexx");
-		property_set("ro.product.model", "SM-G530FZ");
-		property_set("ro.sf.lcd_density", "220");
+		device = (char *)"gprimeltexx";
+		model = (char *)"SM-G530FZ";
+		network_type=LTE_DEVICE;
 	}
 	else if (strstr(bootloader,"G530MUU")) {
-		property_set("ro.build.product", "gprimeltezt");
-		property_set("ro.product.device", "gprimeltezt");
-		property_set("ro.product.model", "SM-G530MU");
-		property_set("ro.sf.lcd_density", "240");
+		device = (char *)"gprimeltezt";
+		model = (char *)"SM-G530MU";
+		network_type=LTE_DEVICE;
 	}
 	else if (strstr(bootloader,"G530MU")) {
-		property_set("ro.build.product", "fortunalteub");
-		property_set("ro.product.device", "fortunalteub");
-		property_set("ro.product.model", "SM-G530M");
+		device = (char *)"fortunalteub";
+		model = (char *)"SM-G530M";
+		network_type=LTE_DEVICE;
 	}
 	else if (strstr(bootloader,"G530P")) {
-		property_set("ro.build.product", "gprimeltespr");
-		property_set("ro.product.device", "gprimeltespr");
-		property_set("ro.product.model", "SM-G530P");
-		/* radio properties */
-		cdma_properties("Chameleon", "310000", "10");
-		property_set("persist.radio.snapshot_enabled", "1");
-		property_set("persist.radio.snapshot_timer", "22");
-		property_set("persist.radio.sib16_support", "1");
-		property_set("ro.config.combined_signal", "true");
-		property_set("ro.ril.ecclist", "911,#911,*911");
-		/* end radio properties */
-
+		device = (char *)"gprimeltespr";
+		model = (char *)"SM-G530P";
+		network_type=CDMA_DEVICE;
+		operator_alpha= (char *)"Chameleon";
+		operator_numeric= (char *)"310000";
 	}
 	else if (strstr(bootloader,"G530T1")) {
-		property_set("ro.build.product", "gprimeltemtr");
-		property_set("ro.product.device", "gprimeltemtr");
-		property_set("ro.product.model", "SM-G530T1");
+		device = (char *)"gprimeltemtr";
+		model = (char *)"SM-G530T1";
+		network_type=LTE_DEVICE;
 	}
 	else if (strstr(bootloader,"G530T")) {
-		property_set("ro.build.product", "gprimeltetmo");
-		property_set("ro.product.device", "gprimeltetmo");
-		property_set("ro.product.model", "SM-G530T");
+		device = (char *)"gprimeltetmo";
+		model = (char *)"SM-G530T";
+		network_type=LTE_DEVICE;
 	}
 	else if (strstr(bootloader,"G530W")) {
-		property_set("ro.build.product", "gprimeltecan");
-		property_set("ro.product.device", "gprimeltecan");
-		property_set("ro.product.model", "SM-G530W");
+		device = (char *)"gprimeltecan";
+		model = (char *)"SM-G530W";
+		network_type=LTE_DEVICE;
 	}
 	else if (strstr(bootloader,"S920L")) {
-		property_set("ro.build.product", "gprimeltetfnvzw");
-		property_set("ro.product.device", "gprimeltetfnvzw");
-		property_set("ro.product.model", "SM-S920L");
-		/* radio properties */
-		cdma_properties("TracFone", "310000", "10");
-		property_set("ro.gsm.data_retry_config", "max_retries=infinite,5000,5000,60000,120000,480000,900000");
-		property_set("ro.config.combined_signal", "true");
-		/* end radio properties */
-		property_set("ro.sf.lcd_density", "260");
-
+		device = (char *)"gprimeltetfnvzw";
+		model = (char *)"SM-S920L";
+		network_type=CDMA_DEVICE;
+		operator_alpha= (char *)"TracFone";
+		operator_numeric= (char *)"310000";
 	}
-	property_get("ro.product.device", device);
-	INFO("Found bootloader id %s setting build properties for %s device\n", bootloader, device);
-}
-
-void vendor_load_properties(void)
-{
-	/* set the device properties */
-	init_target_properties();
+	/* set the properties */
+	set_target_properties((char *)bootloader, device, model,
+		       network_type, operator_alpha, operator_numeric);
 }
