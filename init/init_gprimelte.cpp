@@ -95,6 +95,9 @@ void init_target_properties(void)
 		operator_alpha= (char *)"TracFone";
 		operator_numeric= (char *)"310000";
 	}
+	else {
+		return;
+	}
 	/* set the properties */
 	set_target_properties((char *)bootloader, device, model,
 		       network_type, operator_alpha, operator_numeric);
