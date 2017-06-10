@@ -22,8 +22,7 @@ LOCAL_PATH := device/samsung/gprimelte-common
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(LOCAL_PATH)/bluetooth
 
 # Init
-TARGET_INIT_VENDOR_LIB := libinit_gprimelte
-TARGET_LIBINIT_DEFINES_FILE := $(LOCAL_PATH)/init/init_gprimelte.cpp
+TARGET_LIBINIT_MSM8916_DEFINES_FILE := $(LOCAL_PATH)/init/init_gprimelte.cpp
 
 # Lights
 TARGET_PROVIDES_LIBLIGHT := false
