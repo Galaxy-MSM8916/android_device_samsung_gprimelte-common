@@ -43,17 +43,3 @@ etc/firmware/Signedrompatch_v30.bin
 etc/firmware/Signedrompatch_v24.bin
 etc/firmware/Signedrompatch_v21.bin
 etc/firmware/Signedrompatch_v20.bin
-
-# Qualcomm framework
-vendor/lib/libdiag.so
-vendor/lib/libdsutils.so
-vendor/lib/libidl.so
-vendor/lib/libqcci_legacy.so
-vendor/lib/libqmi_cci.so
-vendor/lib/libqmi_client_qmux.so
-vendor/lib/libqmi_common_so.so
-vendor/lib/libqmi_csi.so
-vendor/lib/libqmi_encdec.so
-vendor/lib/libqmiservices.so
-vendor/lib/libqmi.so
-vendor/lib/lib-sec-disp.so
