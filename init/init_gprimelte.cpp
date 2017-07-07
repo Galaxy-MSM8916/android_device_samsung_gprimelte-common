@@ -33,10 +33,15 @@ void init_target_properties(void)
 {
 	std::string bootloader = property_get("ro.bootloader");
 
+	char *bootloader_str = NULL;
+	char *build_id = NULL;
 	char *device = NULL;
 	char *model = NULL;
+	char *name = NULL;
 	char *operator_alpha = NULL;
 	char *operator_numeric = NULL;
+	char *version_release = NULL;
+
 	int network_type = 1;
 
 	if (bootloader.find("G530HXX") == 0) {
@@ -96,7 +101,12 @@ void init_target_properties(void)
 	else {
 		return;
 	}
+
+	/* make sure device name is set */
+	if (name == NULL)
+		name = device;
+
 	/* set the properties */
-	set_target_properties((char *)bootloader.c_str(), device, model,
-		       network_type, operator_alpha, operator_numeric);
+	set_target_properties(build_id, bootloader_str, name, device, model,
+		       network_type, operator_alpha, operator_numeric, version_release);
 }
