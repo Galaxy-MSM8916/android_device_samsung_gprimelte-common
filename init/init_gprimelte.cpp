@@ -124,6 +124,14 @@ void init_target_properties(void)
 		operator_numeric= (char *)"310000";
 		version_release = (char *)"5.0.2";
 	}
+	else if (bootloader.find("G5309W") == 0) {
+		build_id = (char *)"KTU84P";
+		device = (char *)"fortunaltectc";
+		model = (char *)"SM-G5309W";
+		name = (char *)"fortunaltectc";
+		network_type=LTE_DEVICE;
+		version_release = (char *)"4.4.4";
+	}
 	else {
 		return;
 	}
