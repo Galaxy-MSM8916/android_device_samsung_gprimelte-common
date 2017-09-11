@@ -31,7 +31,7 @@
 
 void init_target_properties(void)
 {
-	std::string bootloader = property_get("ro.bootloader");
+	std::string bootloader = android::base::GetProperty("ro.bootloader", "");
 
 	char *bootloader_str = NULL;
 	char *build_id = NULL;
