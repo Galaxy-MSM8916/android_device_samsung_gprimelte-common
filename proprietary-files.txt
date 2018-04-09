@@ -1,0 +1,2 @@
+bin/qseecomd:d6ee45c4bf1e5eacf8c3e42d10b8eeb9bd26e901391ca500f5a6db175308a488
+vendor/lib/libQSEEComAPI.so:5d7feb04de7187edaab0439aa3266ee70bdbabcf0d4b6b371557832dd9503072
