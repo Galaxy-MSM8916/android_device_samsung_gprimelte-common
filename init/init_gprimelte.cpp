@@ -31,94 +31,72 @@
 
 void init_target_properties(void)
 {
-	std::string bootloader = android::base::GetProperty("ro.bootloader", "");
-
-	char *bootloader_str = NULL;
-	char *build_id = NULL;
 	char *device = NULL;
 	char *model = NULL;
-	char *name = NULL;
-	char *operator_alpha = NULL;
-	char *operator_numeric = NULL;
-	char *version_release = NULL;
 
-	int network_type = 1;
+	std::string bootloader = android::base::GetProperty("ro.bootloader", "");
 
 	if (bootloader.find("G530HXX") == 0) {
 		device = (char *)"fortuna3g";
 		model = (char *)"SM-G530H";
-		name = (char *)"fortuna3gxx";
-		network_type=GSM_DEVICE;
+		set_gsm_properties();
+		set_dsds_properties();
 	}
 	else if (bootloader.find("G530HXC") == 0) {
 		device = (char *)"fortunave3g";
 		model = (char *)"SM-G530H";
-		name = (char *)"fortunave3gxx";
-		network_type=GSM_DEVICE;
+		set_gsm_properties();
+		set_dsds_properties();
 	}
 	else if (bootloader.find("G530FZ") == 0) {
-		device = (char *)"grandprimelte";
+		device = (char *)"gprimeltexx";
 		model = (char *)"SM-G530FZ";
-		name = (char *)"grandprimeltexx";
-		network_type=LTE_DEVICE;
+		set_lte_properties();
 	}
 	else if (bootloader.find("G530MUU") == 0) {
 		device = (char *)"fortunaltezt";
 		model = (char *)"SM-G530MU";
-		name = (char *)"fortunalteuh";
-		network_type=LTE_DEVICE;
+		set_lte_properties();
 	}
 	else if (bootloader.find("G530MU") == 0) {
 		device = (char *)"fortunalte";
 		model = (char *)"SM-G530M";
-		name = (char *)"fortunalteub";
-		network_type=LTE_DEVICE;
+		set_lte_properties();
 	}
 	else if (bootloader.find("G530P") == 0) {
 		device = (char *)"gprimeltespr";
 		model = (char *)"SM-G530P";
-		network_type=CDMA_DEVICE;
-		operator_alpha= (char *)"Chameleon";
-		operator_numeric= (char *)"310000";
+		set_cdma_properties("Chameleon", "310000", "10");
 	}
 	else if (bootloader.find("G530T1") == 0) {
 		device = (char *)"gprimeltemtr";
 		model = (char *)"SM-G530T1";
-		network_type=LTE_DEVICE;
+		set_lte_properties();
 	}
 	else if (bootloader.find("G530T") == 0) {
 		device = (char *)"gprimeltetmo";
 		model = (char *)"SM-G530T";
-		network_type=LTE_DEVICE;
+		set_lte_properties();
 	}
 	else if (bootloader.find("G530W") == 0) {
 		device = (char *)"gprimeltecan";
 		model = (char *)"SM-G530W";
-		name = (char *)"gprimeltevl";
-		network_type=LTE_DEVICE;
+		set_lte_properties();
 	}
 	else if (bootloader.find("S920L") == 0) {
 		device = (char *)"gprimeltetfnvzw";
 		model = (char *)"SM-S920L";
-		network_type=CDMA_DEVICE;
-		operator_alpha= (char *)"TracFone";
-		operator_numeric= (char *)"310000";
+		set_cdma_properties("TracFone", "310000", "10");
 	}
 	else if (bootloader.find("G5309W") == 0) {
 		device = (char *)"fortunaltectc";
 		model = (char *)"SM-G5309W";
-		name = (char *)"fortunaltectc";
-		network_type=LTE_DEVICE;
+		set_lte_properties();
 	}
 	else {
 		return;
 	}
 
-	/* make sure device name is set */
-	if (name == NULL)
-		name = device;
-
 	/* set the properties */
-	set_target_properties(build_id, bootloader_str, name, device, model,
-		       network_type, operator_alpha, operator_numeric, version_release);
+	set_target_properties(device, model);
 }
