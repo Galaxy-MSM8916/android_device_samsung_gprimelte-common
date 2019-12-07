@@ -1,2 +1,3 @@
 # Init
-TARGET_LIBINIT_MSM8916_DEFINES_FILE := $(LOCAL_PATH)/init/init_gprimelte.cpp
+TARGET_INIT_VENDOR_LIB := libinit_gprimelte.cpp
+TARGET_RECOVERY_DEVICE_MODULES := libinit_gprimelte.cpp
