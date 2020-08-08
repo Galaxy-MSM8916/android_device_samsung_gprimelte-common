@@ -21,11 +21,11 @@ $(call inherit-product, device/samsung/msm8916-common/msm8916.mk)
 #Inherit from vendor
 $(call inherit-product-if-exists, vendor/samsung/gprimelte-common/gprimelte-common-vendor.mk)
 
-LOCAL_PATH := device/samsung/gprimelte-common
+DEVICE_PATH := device/samsung/gprimelte-common
 
 # Common overlay
 DEVICE_PACKAGE_OVERLAYS += \
-	$(LOCAL_PATH)/overlay \
+	$(DEVICE_PATH)/overlay \
 
 # append the updater uri to the product properties if set
 ifneq ($(CM_UPDATER_OTA_URI),)
@@ -56,8 +56,8 @@ PRODUCT_PACKAGES += \
 
 # Media configurations
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/media/media_profiles_V1_0.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_profiles_V1_0.xml \
-    $(LOCAL_PATH)/configs/media/media_codecs_performance.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_performance.xml
+    $(DEVICE_PATH)/configs/media/media_profiles_V1_0.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_profiles_V1_0.xml \
+    $(DEVICE_PATH)/configs/media/media_codecs_performance.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_performance.xml
 
 # Permissions
 PRODUCT_COPY_FILES += \
@@ -82,5 +82,5 @@ PRODUCT_COPY_FILES += \
         frameworks/native/data/etc/android.hardware.sensor.proximity.xml:system/etc/permissions/android.hardware.sensor.proximity.xml
 
 # Proprieties
--include $(LOCAL_PATH)/system_prop.mk
+-include $(DEVICE_PATH)/system_prop.mk
 
