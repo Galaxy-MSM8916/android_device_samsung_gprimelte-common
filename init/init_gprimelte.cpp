@@ -110,6 +110,21 @@ void set_fingerprint()
 	property_override_dual("ro.build.fingerprint", "ro.boot.fingerprint", new_fingerprint);
 }
 
+void set_cdma_properties(const char *operator_alpha, const char *operator_numeric, const char * network)
+{
+	/* Dynamic CDMA Properties */
+	android::init::property_set("ro.cdma.home.operator.alpha", operator_alpha);
+	android::init::property_set("ro.cdma.home.operator.numeric", operator_numeric);
+	android::init::property_set("ro.telephony.default_network", network);
+
+	/* Static CDMA Properties */
+	android::init::property_set("ril.subscription.types", "NV,RUIM");
+	android::init::property_set("ro.telephony.default_cdma_sub", "0");
+	android::init::property_set("ro.telephony.get_imsi_from_sim", "true");
+	android::init::property_set("ro.telephony.ril.config", "newDriverCallU,newDialCode");
+	android::init::property_set("telephony.lteOnCdmaDevice", "1");
+}
+
 void set_dsds_properties()
 {
 	android::init::property_set("ro.multisim.simslotcount", "2");
