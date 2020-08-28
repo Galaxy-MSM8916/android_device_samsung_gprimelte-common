@@ -39,8 +39,8 @@ $(call inherit-product, frameworks/native/build/phone-xhdpi-1024-dalvik-heap.mk)
 PRODUCT_COPY_FILES += \
         frameworks/native/data/etc/android.hardware.audio.low_latency.xml:system/etc/permissions/android.hardware.audio.low_latency.xml
 # Camera
-PRODUCT_PACKAGES += \
-        Camera2
+# PRODUCT_PACKAGES += \
+#        Camera2
 
 # Permissions
 PRODUCT_COPY_FILES += \
